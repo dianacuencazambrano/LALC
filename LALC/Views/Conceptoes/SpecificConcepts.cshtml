@@ -1,16 +1,20 @@
-﻿@model IEnumerable<LALC.Models.Concepto>
-import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap');
+﻿@model List<LALC.Models.Concepto>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SpecificConcepts";
 }
 
-<h2>Index</h2>
-
+<h2>SpecificConcepts</h2>
 <div class="row">
     <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Categorias")'">Crear</button>
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes")'">Crear</button>
     </div>
-    
+    <div class="col">
+        @using (Html.BeginForm())
+        {
+            @Html.TextBox("TituloC")
+            <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
+        }
+    </div>
 </div>
 
 <style>
@@ -61,7 +65,6 @@ import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&d
         color: white;
         transform: rotateY(180deg);
     }
-
 </style>
 
 @foreach (var item in Model)
@@ -72,11 +75,10 @@ import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&d
                 <p>@item.Titulo</p>
             </div>
             <div class="flip-card-back">
-                <p>@item.Definicion</p>
+                <p> @item.Definicion</p>
             </div>
         </div>
     </div>
 
 }
-
 

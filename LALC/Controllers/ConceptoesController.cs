@@ -15,10 +15,15 @@ namespace LALC.Controllers
         private LALCDb db = new LALCDb();
 
         // GET: Conceptoes
-        public ActionResult Index()
+        public ActionResult Index(String TituloC)
         {
-            var concepto = db.Concepto.Include(c => c.Subcategoria);
-            return View(concepto.ToList());
+            var concepto = from s in db.Concepto select s;
+            if (!String.IsNullOrEmpty(TituloC))
+            {
+                concepto = concepto.Where(s => s.Titulo.Contains(TituloC));
+                return View(concepto.ToList());
+            }
+            return View(db.Concepto.ToList());
         }
 
         // GET: Conceptoes/Details/5
@@ -34,6 +39,21 @@ namespace LALC.Controllers
                 return HttpNotFound();
             }
             return View(concepto);
+        }
+
+        public ActionResult SpecificConcepts(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var concepto = from s in db.Concepto select s;
+            concepto = concepto.Where(s => s.SubcategoriaID == id);
+            if (concepto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(concepto.ToList());
         }
 
         // GET: Conceptoes/Create

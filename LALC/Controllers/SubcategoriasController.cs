@@ -25,6 +25,19 @@ namespace LALC.Controllers
             }
             return View(db.Subcategoria.ToList());
         }
+        
+        [ActionName("SearchSub")]
+        public ActionResult SpecificSubcategories(String TituloS)
+        {
+            var Subcategoria = from s in db.Subcategoria select s;
+            if (!String.IsNullOrEmpty(TituloS))
+            {
+                Subcategoria = Subcategoria.Where(s => s.Nombre.Contains(TituloS));
+                return View(Subcategoria.ToList());
+            }
+            return View(db.Subcategoria.ToList());
+        }
+
         public ActionResult SpecificSubcategories(int? id)
         {
             if (id == null)
@@ -73,8 +86,7 @@ namespace LALC.Controllers
             {
                 db.Subcategoria.Add(subcategoria);
                 db.SaveChanges();
-                //CategoriasController.id
-                return RedirectToAction("SpecificSubcategories","Subcategorias", new { id = subcategoria.CategoriaID });
+                return RedirectToAction("Index");
             }
 
             ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre", subcategoria.CategoriaID);

@@ -192,6 +192,7 @@
     <Content Include="Views\Conceptoes\Details.cshtml" />
     <Content Include="Views\Conceptoes\Edit.cshtml" />
     <Content Include="Views\Conceptoes\Index.cshtml" />
+    <Content Include="Views\Conceptoes\SpecificConcepts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

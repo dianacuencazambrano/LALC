@@ -22,7 +22,7 @@
     @foreach (var item in Model)
     {
         <div class="col-lg-4">
-            <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("Details", "Subcategorias", new { id=item.SubcategoriaID}) '">
+            <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificConcepts", "Conceptoes", new { id=item.SubcategoriaID}) '">
                 <div class="card-body">
                     <h5 class="card-title">@item.Nombre</h5>
                     <p class="card-text">@item.Descripcion</p>
