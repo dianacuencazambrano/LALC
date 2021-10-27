@@ -4,45 +4,32 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Subcategorias</h2>
+<div class="row">
+    <div class="col">
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Subcategorias")'">Crear</button>
+    </div>
+    <div class="col">
+        @using (Html.BeginForm())
+        {
+            @Html.TextBox("Titulo")
+            <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
+        }
+    </div>
+</div>
 
-<div>
-    <h4>Categoria</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.esPrioritaria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.esPrioritaria)
-        </dd>
-
-    </dl>
+<div class="d-flex p-2 bd-highlight">
+    @foreach (var item in Model.Subcategoria)
+        {
+            <div class="col-lg-4">
+                <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias",new { id=item.CategoriaID}) '">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">@item.Descripcion</p>
+                    </div>
+                </div>
+            </div>
+            }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CategoriaID }) |

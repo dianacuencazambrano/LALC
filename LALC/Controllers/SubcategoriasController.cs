@@ -25,6 +25,20 @@ namespace LALC.Controllers
             }
             return View(db.Subcategoria.ToList());
         }
+        public ActionResult SpecificSubcategories(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var subcategoria = from s in db.Subcategoria select s;
+            subcategoria = subcategoria.Where(s => s.CategoriaID == id);
+            if (subcategoria == null)
+            {
+                return HttpNotFound();
+            }
+            return View(subcategoria.ToList());
+        }
 
         // GET: Subcategorias/Details/5
         public ActionResult Details(int? id)

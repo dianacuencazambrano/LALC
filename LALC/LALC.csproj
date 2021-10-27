@@ -191,6 +191,7 @@
     <Content Include="Views\Subcategorias\Details.cshtml" />
     <Content Include="Views\Subcategorias\Edit.cshtml" />
     <Content Include="Views\Subcategorias\Index.cshtml" />
+    <Content Include="Views\Subcategorias\SpecificSubcategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

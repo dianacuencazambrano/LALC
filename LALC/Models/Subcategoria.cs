@@ -12,7 +12,6 @@ namespace LALC.Models
         public String Nombre { get; set; }
         public String Color { get; set; }
         public String Descripcion { get; set; }
-
         public virtual Categoria Categoria { get; set; }
         public virtual ICollection<Concepto> Concepto { get; set; }
     }
