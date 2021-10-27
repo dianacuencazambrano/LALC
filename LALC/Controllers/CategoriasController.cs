@@ -13,7 +13,7 @@ namespace LALC.Controllers
     public class CategoriasController : Controller
     {
         private LALCDb db = new LALCDb();
-
+        public static int id=0;
         // GET: Categorias
         public ActionResult Index(String Titulo)
         {

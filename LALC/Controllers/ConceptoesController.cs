@@ -17,7 +17,7 @@ namespace LALC.Controllers
         // GET: Conceptoes
         public ActionResult Index()
         {
-            var concepto = db.Concepto.Include(c => c.Categoria);
+            var concepto = db.Concepto.Include(c => c.Subcategoria);
             return View(concepto.ToList());
         }
 
@@ -39,16 +39,16 @@ namespace LALC.Controllers
         // GET: Conceptoes/Create
         public ActionResult Create()
         {
-            ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre");
+            ViewBag.SubcategoriaID = new SelectList(db.Subcategoria, "SubcategoriaID", "Nombre");
             return View();
         }
 
         // POST: Conceptoes/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ConceptoID,CategoriaID,Definicion,Titulo")] Concepto concepto)
+        public ActionResult Create([Bind(Include = "ConceptoID,SubcategoriaID,Definicion,Titulo")] Concepto concepto)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace LALC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre", concepto.CategoriaID);
+            ViewBag.SubcategoriaID = new SelectList(db.Subcategoria, "SubcategoriaID", "Nombre", concepto.SubcategoriaID);
             return View(concepto);
         }
 
@@ -73,16 +73,16 @@ namespace LALC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre", concepto.CategoriaID);
+            ViewBag.SubcategoriaID = new SelectList(db.Subcategoria, "SubcategoriaID", "Nombre", concepto.SubcategoriaID);
             return View(concepto);
         }
 
         // POST: Conceptoes/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ConceptoID,CategoriaID,Definicion,Titulo")] Concepto concepto)
+        public ActionResult Edit([Bind(Include = "ConceptoID,SubcategoriaID,Definicion,Titulo")] Concepto concepto)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace LALC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre", concepto.CategoriaID);
+            ViewBag.SubcategoriaID = new SelectList(db.Subcategoria, "SubcategoriaID", "Nombre", concepto.SubcategoriaID);
             return View(concepto);
         }
 

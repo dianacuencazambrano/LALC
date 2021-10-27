@@ -73,7 +73,8 @@ namespace LALC.Controllers
             {
                 db.Subcategoria.Add(subcategoria);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //CategoriasController.id
+                return RedirectToAction("SpecificSubcategories","Subcategorias", new { id = subcategoria.CategoriaID });
             }
 
             ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre", subcategoria.CategoriaID);
