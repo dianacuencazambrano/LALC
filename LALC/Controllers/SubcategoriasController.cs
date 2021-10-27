@@ -25,8 +25,8 @@ namespace LALC.Controllers
             }
             return View(db.Subcategoria.ToList());
         }
-        
-        [ActionName("SearchSub")]
+
+        [HttpPost]
         public ActionResult SpecificSubcategories(String TituloS)
         {
             var Subcategoria = from s in db.Subcategoria select s;

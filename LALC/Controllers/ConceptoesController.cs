@@ -41,6 +41,17 @@ namespace LALC.Controllers
             return View(concepto);
         }
 
+        [HttpPost]
+        public ActionResult SpecificConcepts(String TituloC)
+        {
+            var concepto = from s in db.Concepto select s;
+            if (!String.IsNullOrEmpty(TituloC))
+            {
+                concepto = concepto.Where(s => s.Titulo.Contains(TituloC));
+                return View(concepto.ToList());
+            }
+            return View(db.Concepto.ToList());
+        }
         public ActionResult SpecificConcepts(int? id)
         {
             if (id == null)
