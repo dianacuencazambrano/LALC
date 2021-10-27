@@ -57,9 +57,15 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div class="col">
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="goBack()">Cancelar</button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

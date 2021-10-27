@@ -3,7 +3,7 @@
     ViewBag.Title = "SpecificSubcategories";
 }
 
-<h2>SpecificSubcategories</h2>
+<h2>SUBCATEGORÍAS</h2>
 
 <div class="row">
     <div class="col">
@@ -18,19 +18,28 @@
     </div>
 </div>
 
-<div class="d-flex p-2 bd-highlight">
+<style>
+    .cards {
+        margin-top: 30px;
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+</style>
+
+<div class="cards">
     @foreach (var item in Model)
     {
-        <div class="col-lg-4">
-            <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificConcepts", "Conceptoes", new { id=item.SubcategoriaID}) '">
+          <div class="card text-center text-white bg-primary mb-3" onclick="location.href = '@Url.Action("SpecificConcepts", "Conceptoes", new { id=item.SubcategoriaID}) '">
                 <div class="card-body">
                     <h5 class="card-title">@item.Nombre</h5>
                     <p class="card-text">@item.Descripcion</p>
                 </div>
-            </div>
-        </div>
+          </div>
     }
 </div>
+
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">

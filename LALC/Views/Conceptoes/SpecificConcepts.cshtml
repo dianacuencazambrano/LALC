@@ -3,7 +3,7 @@
     ViewBag.Title = "SpecificConcepts";
 }
 
-<h2>SpecificConcepts</h2>
+<h2>CONCEPTOS</h2>
 <div class="row">
     <div class="col">
         <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes")'">Crear</button>
@@ -18,10 +18,19 @@
 </div>
 
 <style>
+    .cards {
+        margin-top: 30px;
+        max-width: 100px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
     .flip-card {
         background-color: transparent;
-        width: 200px;
-        height: 100px;
+        margin: 0 auto;
+        width: 300px;
+        height: 200px;
         border: 1px solid #f1f1f1;
         perspective: 1000px; /* Remove this if you don't want the 3D effect */
     }
@@ -67,8 +76,10 @@
     }
 </style>
 
-@foreach (var item in Model)
-{
+<div class="cards">
+    @foreach (var item in Model)
+
+    {
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -79,16 +90,18 @@
             </div>
         </div>
     </div>
+    }
+</div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
-}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+    
 
