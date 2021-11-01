@@ -53,7 +53,7 @@ namespace LALC.Controllers
                 return View(concepto.ToList());
             }
             return View(db.Concepto.ToList());
-        }**/
+        }*/
         public ActionResult SpecificConcepts(int? id, String TituloC, int? pagina)
         {
             if (id == null)
