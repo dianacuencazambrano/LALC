@@ -4,13 +4,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Subcategoria</h4>
         <hr />
@@ -46,23 +46,34 @@
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+    <br />
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col" style="width:fit-content">
+                <input type="submit" value="Create" class="btn btn-default fs-5" style="width: auto; color: white; background: #3a70cf" />
+            </div>
+            <div class="col" style="width:fit-content">
+                <button type="button" class="btn btn-dark fs-5" style="width:auto" onclick="goBack()">Cancelar</button>
+                <script>
+                    function goBack() {
+                        window.history.back();
+                    }
+                </script>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+
             </div>
         </div>
     </div>
 }
 
-<div class="col">
-    <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="goBack()">Cancelar</button>
-    <script>
-            function goBack() {
-                window.history.back();
-            }
-    </script>
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
