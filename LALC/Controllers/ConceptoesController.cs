@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LALC.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace LALC.Controllers
 {
@@ -41,7 +43,7 @@ namespace LALC.Controllers
             return View(concepto);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult SpecificConcepts(String TituloC)
         {
             var concepto = from s in db.Concepto select s;
@@ -51,8 +53,8 @@ namespace LALC.Controllers
                 return View(concepto.ToList());
             }
             return View(db.Concepto.ToList());
-        }
-        public ActionResult SpecificConcepts(int? id)
+        }*/
+        public ActionResult SpecificConcepts(int? id, String TituloC, int? pagina)
         {
             if (id == null)
             {
@@ -64,7 +66,12 @@ namespace LALC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(concepto.ToList());
+            if (!String.IsNullOrEmpty(TituloC))
+            {
+                concepto = concepto.Where(s => s.Titulo.Contains(TituloC));
+                return View(concepto.ToList().ToPagedList(pagina ?? 1, 12));
+            }
+            return View(concepto.ToList().ToList().ToPagedList(pagina ?? 1, 12));
         }
 
         // GET: Conceptoes/Create

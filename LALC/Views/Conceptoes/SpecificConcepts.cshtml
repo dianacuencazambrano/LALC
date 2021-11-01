@@ -1,4 +1,6 @@
-﻿@model List<LALC.Models.Concepto>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<LALC.Models.Concepto>
 @{
     ViewBag.Title = "SpecificConcepts";
 }
@@ -9,7 +11,7 @@
         <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes")'">Crear</button>
     </div>
     <div class="col">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("SpecificConcepts", "Conceptoes", FormMethod.Get))
         {
             @Html.TextBox("TituloC")
             <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
@@ -80,28 +82,21 @@
     @foreach (var item in Model)
 
     {
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <p>@item.Titulo</p>
-            </div>
-            <div class="flip-card-back">
-                <p> @item.Definicion</p>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <p>@item.Titulo</p>
+                </div>
+                <div class="flip-card-back">
+                    <p> @item.Definicion</p>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
-    
+
+
+@Html.PagedListPager(Model, pagina => Url.Action("SpecificConcepts", new { pagina, TituloC = Request.QueryString["TituloC"] }))
+
 
