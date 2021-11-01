@@ -73,6 +73,28 @@ namespace LALC.Controllers
             }
             return View(concepto.ToList().ToList().ToPagedList(pagina ?? 1, 12));
         }
+        public ActionResult Practice(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var concepto = from s in db.Concepto select s;
+            concepto = concepto.Where(s => s.SubcategoriaID == id);
+            if (concepto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(concepto.ToList());
+        }
+
+        public int getItem(int id)
+        {
+            Random a = new Random();
+            var concepto = from s in db.Concepto select s;
+            concepto = concepto.Where(s => s.SubcategoriaID == id);
+            return a.Next(0, concepto.ToList().Count);
+        }
 
         // GET: Conceptoes/Create
         public ActionResult Create()

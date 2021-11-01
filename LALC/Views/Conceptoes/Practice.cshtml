@@ -1,30 +1,9 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
-@model IPagedList<LALC.Models.Concepto>
+﻿@model IEnumerable<LALC.Models.Concepto>
 @{
-    ViewBag.Title = "SpecificConcepts";
+    ViewBag.Title = "Practice";
 }
 
-<h2>CONCEPTOS</h2>
-<div class="row">
-    <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes")'">Crear</button>
-    </div>
-    <div class="col">
-        @using (Html.BeginForm("SpecificConcepts", "Conceptoes", FormMethod.Get))
-        {
-            @Html.TextBox("TituloC")
-            <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
-        }
-    </div>
-</div>
-
-<br />
-<div class="row">
-    <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes", new { id=Model.First().SubcategoriaID})'">A practicar</button>
-    </div>
-</div>
+<h2>Practice</h2>
 
 <style>
     .cards {
@@ -85,25 +64,34 @@
     }
 </style>
 
-<div class="cards">
-    @foreach (var item in Model)
-
-    {
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <p>@item.Titulo</p>
-                </div>
-                <div class="flip-card-back">
-                    <p> @item.Definicion</p>
-                </div>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <p>@item.Titulo</p>
+            </div>
+            <div class="flip-card-back">
+                <p>@item.Definicion</p>
             </div>
         </div>
-    }
+    </div>}
+
+
+<br />
+<div class="row">
+    <div class="col">
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes")'"> Correcto :3</button>
+    </div>
 </div>
-
-
-
-@Html.PagedListPager(Model, pagina => Url.Action("SpecificConcepts", new { pagina, TituloC = Request.QueryString["TituloC"] }))
-
+<br />
+<div class="row">
+    <div class="col">
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes")'"> Incorrecto :c</button>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col">
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes")'"> Siguiente!!!</button>
+    </div>
+</div>
 
