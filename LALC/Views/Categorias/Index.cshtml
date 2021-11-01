@@ -35,14 +35,12 @@
 <div class="cards">
     @foreach (var item in Model)
     {
-        
             <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
                 <div class="card-body">
                     <h5 class="card-title">@item.Nombre</h5>
                     <p class="card-text">@item.Descripcion</p>
                 </div>
             </div>
-        
     }
 </div>
 

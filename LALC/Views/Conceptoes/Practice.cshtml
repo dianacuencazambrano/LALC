@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LALC.Models.Concepto>
+﻿@model LALC.Models.Concepto
 @{
     ViewBag.Title = "Practice";
 }
@@ -67,13 +67,13 @@
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <p>@item.Titulo</p>
+                <p>@Model.Titulo</p>
             </div>
             <div class="flip-card-back">
-                <p>@item.Definicion</p>
+                <p>@Model.Definicion</p>
             </div>
         </div>
-    </div>}
+    </div>
 
 
 <br />

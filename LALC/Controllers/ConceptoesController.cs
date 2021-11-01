@@ -75,17 +75,21 @@ namespace LALC.Controllers
         }
         public ActionResult Practice(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             var concepto = from s in db.Concepto select s;
             concepto = concepto.Where(s => s.SubcategoriaID == id);
             if (concepto == null)
             {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Random a = new Random();
+            List<Concepto> conceptos = concepto.ToList();
+            int v = a.Next(0, conceptos.Count);
+            Concepto c_random = conceptos[v];
+            if (c_random == null)
+            {
                 return HttpNotFound();
             }
-            return View(concepto.ToList());
+            return View(c_random);
         }
 
         public int getItem(int id)
