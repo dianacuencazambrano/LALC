@@ -10,7 +10,7 @@
         <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Subcategorias")'">Crear</button>
     </div>
     <div class="col">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("SpecificSubcategories", "Subcategorias", FormMethod.Get))
         {
             @Html.TextBox("TituloS")
             <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
@@ -51,4 +51,5 @@
         </li>
     </ul>
 </nav>
+
 
