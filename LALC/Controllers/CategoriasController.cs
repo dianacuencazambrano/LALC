@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LALC.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace LALC.Controllers
 {
@@ -15,15 +17,15 @@ namespace LALC.Controllers
         private LALCDb db = new LALCDb();
         public static int id=0;
         // GET: Categorias
-        public ActionResult Index(String Titulo)
+        public ActionResult Index(String Titulo,int? pagina)
         {
             var categoria = from s in db.Categoria select s;
             if (!String.IsNullOrEmpty(Titulo))
             {
                 categoria = categoria.Where(s => s.Nombre.Contains(Titulo));
-                return View(categoria.ToList());
+                return View(categoria.ToList().ToPagedList(pagina ??  1,12));
             }
-            return View(db.Categoria.ToList());
+            return View(db.Categoria.ToList().ToPagedList(pagina ?? 1, 12));
         }
 
         // GET: Categorias/Details/5

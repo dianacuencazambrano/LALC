@@ -1,4 +1,6 @@
-﻿@model IEnumerable<LALC.Models.Categoria>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<LALC.Models.Categoria>
 
 @{
     ViewBag.Title = "Categorías";
@@ -44,13 +46,4 @@
     }
 </div>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="@Url.Action("Index", "Subcategorias")">Next</a>
-        </li>
-    </ul>
-</nav>
+@Html.PagedListPager(Model,pagina => Url.Action("Index", new {pagina}))
