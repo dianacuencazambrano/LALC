@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LALC.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace LALC.Controllers
 {
@@ -25,7 +27,7 @@ namespace LALC.Controllers
             }
             return View(db.Subcategoria.ToList());
         }
-
+        /*
         [HttpPost]
         public ActionResult SpecificSubcategories(String TituloS)
         {
@@ -36,9 +38,9 @@ namespace LALC.Controllers
                 return View(Subcategoria.ToList());
             }
             return View(db.Subcategoria.ToList());
-        }
+        }*/
 
-        public ActionResult SpecificSubcategories(int? id)
+        public ActionResult SpecificSubcategories(int? id, String TituloS,int? pagina)
         {
             if (id == null)
             {
@@ -50,7 +52,12 @@ namespace LALC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(subcategoria.ToList());
+            if (!String.IsNullOrEmpty(TituloS))
+            {
+                subcategoria = subcategoria.Where(s => s.Nombre.Contains(TituloS));
+                return View(subcategoria.ToList().ToPagedList(pagina ?? 1, 12));
+            }
+            return View(subcategoria.ToList().ToList().ToPagedList(pagina ?? 1, 12));
         }
 
         // GET: Subcategorias/Details/5
