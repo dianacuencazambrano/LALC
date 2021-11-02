@@ -30,7 +30,6 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 30px;
     }
-
 </style>
 
 
@@ -39,7 +38,7 @@
     {
             <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
                 <div class="card-body">
-                    <ul class="submenu">
+                    <ul id="nav" class="submenu">
                         <li><a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a></li>
                         <li><a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a></li>
                     </ul>
@@ -48,7 +47,6 @@
                 </div>
             </div>
             }
-    
 </div>
 
 
