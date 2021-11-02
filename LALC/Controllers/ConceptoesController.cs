@@ -87,7 +87,7 @@ namespace LALC.Controllers
             Concepto c_random = conceptos[v];
             if (c_random == null)
             {
-                return HttpNotFound();
+                return View();
             }
             return View(c_random);
         }

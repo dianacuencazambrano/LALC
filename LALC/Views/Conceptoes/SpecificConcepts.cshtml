@@ -20,18 +20,22 @@
 </div>
 
 <br />
-<div class="row">
-    <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes", new { id = Model.First().SubcategoriaID})'">A practicar</button>
+@if (Model.FirstOrDefault() != null)
+{
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes", new { id = Model.FirstOrDefault().SubcategoriaID})'">A practicar</button>
+        </div>
     </div>
-</div>
+}
+
 
 <style>
     .cards {
         margin-top: 30px;
         max-width: 100px;
         display: grid;
-        border-radius:25px;
+        border-radius: 25px;
         grid-template-columns: repeat(4, 1fr);
         gap: 30px;
     }
