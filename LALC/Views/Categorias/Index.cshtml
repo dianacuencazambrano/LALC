@@ -30,6 +30,56 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 30px;
     }
+    /* Dropdown Button */
+    .dropbtn {
+        background-color: transparent;
+        color: black;
+        margin-top: 0px;
+        height: 15px;
+        padding-bottom: 25px;
+        border: none;
+        margin-left: 180px;
+        object-position: right;
+    }
+    .p{
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        margin-left: 180px;
+        position: absolute;
+        background-color: lightgrey;
+        min-width: 100px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        object-position: right;
+    }
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 5px 5px;
+            text-decoration: none;
+            display: block;
+        }
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: transparent;
+        }
 </style>
 
 
@@ -37,11 +87,14 @@
     @foreach (var item in Model)
     {
             <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
-                <div class="card-body">
-                    <ul id="nav" class="submenu">
-                        <li><a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a></li>
-                        <li><a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a></li>
-                    </ul>
+                <div class="card-body mx-0 px-0">
+                    <div class="dropdown">
+                        <button class="dropbtn card pull-right">+</button>
+                        <div class="dropdown-content">
+                            <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
+                            <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
+                        </div>
+                    </div>                    
                     <h5 class="card-title">@item.Nombre</h5>
                     <p class="card-text">@item.Descripcion</p>
                 </div>
