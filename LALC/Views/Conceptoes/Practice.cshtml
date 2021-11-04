@@ -1,4 +1,4 @@
-﻿@model LALC.Models.Concepto
+﻿@model IEnumerable<LALC.Models.Concepto>
 @{
     ViewBag.Title = "Practice";
 }
@@ -64,34 +64,89 @@
     }
 </style>
 
+@{
+    
+
     <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <p>@Model.Titulo</p>
-            </div>
-            <div class="flip-card-back">
-                <p>@Model.Definicion</p>
-            </div>
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <p id="titulo">@c_random.Titulo</p>
+        </div>
+        <div class="flip-card-back">
+            <p id="definicion">@c_random.Definicion</p>
         </div>
     </div>
+</div>}
 
 
+
+
+
+
+
 <br />
 <div class="row">
     <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes")'"> Correcto :3</button>
+        <button type="button" id="bt1" class="btn btn-dark fs-5" onclick="" style="width:18%"> Correcto :3</button>
     </div>
 </div>
 <br />
 <div class="row">
     <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes")'"> Incorrecto :c</button>
+        <button type="button" id="bt2" class="btn btn-dark fs-5" onclick="" style="width:18%"> Incorrecto :c</button>
+        <p id="warning"></p>
     </div>
 </div>
 <br />
-<div class="row">
-    <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Practice", "Conceptoes")'"> Siguiente!!!</button>
+
+
+<body>
+    <div class="container">
+        <h1 id="correcto">0</h1>
+        <h1 id="incorrecto">0</h1>
     </div>
-</div>
+</body>
+
+<style>
+    {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        width: 40%;
+        margin-left: 10%;
+        margin-top: 15px;
+        padding: 10px;
+        background: #000;
+        border-radius: 30px;
+        border: 2px solid #0075af;
+    }
+
+    #num {
+        color: #fff;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+
+
+<script>
+    let numContainer = document.getElementById('correcto'), tituloContainer = document.getElementById('titulo');
+    let contenidoContainer = document.getElementById('definicion');
+    let value = 0;
+    let btnInc = document.getElementById('bt1');
+    let inco = document.getElementById('incorrecto');
+    let valor = 0;
+    let btnCor = document.getElementById('bt2');
+
+btnInc.addEventListener("click", () => {value++; numContainer.textContent = value});
+btnCor.addEventListener("click", () => {valor++; inco.textContent = valor });
+btnInc.addEventListener("click", () => {contenidoContainer.textContent = "Hola"; tituloContainer.textContent = "XD"});
+</script>
+
+
+
 
