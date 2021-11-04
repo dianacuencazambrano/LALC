@@ -127,7 +127,7 @@ namespace LALC.Controllers
             {
                 db.Entry(subcategoria).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SpecificSubcategories", new { id = subcategoria.CategoriaID });
             }
             ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre", subcategoria.CategoriaID);
             return View(subcategoria);
@@ -156,7 +156,7 @@ namespace LALC.Controllers
             Subcategoria subcategoria = db.Subcategoria.Find(id);
             db.Subcategoria.Remove(subcategoria);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SpecificSubcategories", new { id= subcategoria.CategoriaID});
         }
 
         protected override void Dispose(bool disposing)

@@ -4,6 +4,13 @@
     ViewBag.Title = "Create";
 }
 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/colorpicker.css" type="text/css" />
+<script type="text/javascript" src="js/colorpicker.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.3.5/jquery.minicolors.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.3.5/jquery.minicolors.css" type="text/css" rel="stylesheet" />
+
 <h2>Crear</h2>
 
 
@@ -12,7 +19,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Subcategoria</h4>
+        <h4>Subcategoría</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -33,14 +40,19 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10" style="width: 40px; height: 30px;">
+                <input type="hidden" name="Color" value="#0088cc" id="c1" />
+                <br />
+                <script>
+                    $('#c1').minicolors();
+                </script>
+                <br />
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Descripcion,"Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
