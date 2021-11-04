@@ -43,17 +43,6 @@ namespace LALC.Controllers
             return View(concepto);
         }
 
-        /*[HttpPost]
-        public ActionResult SpecificConcepts(String TituloC)
-        {
-            var concepto = from s in db.Concepto select s;
-            if (!String.IsNullOrEmpty(TituloC))
-            {
-                concepto = concepto.Where(s => s.Titulo.Contains(TituloC));
-                return View(concepto.ToList());
-            }
-            return View(db.Concepto.ToList());
-        }*/
         public ActionResult SpecificConcepts(int? id, String TituloC, int? pagina)
         {
             if (id == null)
@@ -152,7 +141,7 @@ namespace LALC.Controllers
             {
                 db.Entry(concepto).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SpecificConcepts",new { id = concepto.SubcategoriaID });
             }
             ViewBag.SubcategoriaID = new SelectList(db.Subcategoria, "SubcategoriaID", "Nombre", concepto.SubcategoriaID);
             return View(concepto);
@@ -181,7 +170,7 @@ namespace LALC.Controllers
             Concepto concepto = db.Concepto.Find(id);
             db.Concepto.Remove(concepto);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SpecificConcepts",new { id = concepto.SubcategoriaID });
         }
 
         protected override void Dispose(bool disposing)
