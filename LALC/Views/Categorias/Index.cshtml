@@ -90,7 +90,7 @@
                 {
                     if (item.esPrioritaria)
                     {
-                        <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
+                        <div class="card text-center text-white mb-3" style ="background-color:@item.Color; max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
                             <div class="card-body mx-0 px-0">
                                 <div class="dropdown">
                                     <button class="dropbtn card pull-right">+</button>
@@ -115,19 +115,19 @@
     {
         if (!item.esPrioritaria)
         {
-            <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
-                <div class="card-body mx-0 px-0">
-                    <div class="dropdown">
-                        <button class="dropbtn card pull-right">+</button>
-                        <div class="dropdown-content">
-                            <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
-                            <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
-                        </div>
-                    </div>
-                    <h5 class="card-title">@item.Nombre</h5>
-                    <p class="card-text">@item.Descripcion</p>
+    <div class="card text-center text-white mb-3" style="background-color:@item.Color; max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
+        <div class="card-body mx-0 px-0">
+            <div class="dropdown">
+                <button class="dropbtn card pull-right">+</button>
+                <div class="dropdown-content">
+                    <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
+                    <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
                 </div>
             </div>
+            <h5 class="card-title">@item.Nombre</h5>
+            <p class="card-text">@item.Descripcion</p>
+        </div>
+    </div>
         }
     }
 
