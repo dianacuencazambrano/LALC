@@ -47,7 +47,12 @@ namespace LALC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var subcategoria = from s in db.Subcategoria select s;
+            List<Subcategoria> subcategorias = new List<Subcategoria>();
             subcategoria = subcategoria.Where(s => s.CategoriaID == id);
+            foreach (var ct in subcategoria.ToList())
+            {   
+                subcategorias.Add(ct);
+            }
             if (subcategoria == null)
             {
                 return HttpNotFound();
@@ -55,9 +60,10 @@ namespace LALC.Controllers
             if (!String.IsNullOrEmpty(TituloS))
             {
                 subcategoria = subcategoria.Where(s => s.Nombre.Contains(TituloS));
-                return View(subcategoria.ToList().ToPagedList(pagina ?? 1, 12));
+                return View(subcategorias.ToPagedList(pagina ?? 1, 12));
             }
-            return View(subcategoria.ToList().ToList().ToPagedList(pagina ?? 1, 12));
+            subcategorias = subcategorias.OrderBy(ct => ct.Nombre).ToList();
+            return View(subcategorias.ToPagedList(pagina ?? 1, 12));
         }
 
         // GET: Subcategorias/Details/5
