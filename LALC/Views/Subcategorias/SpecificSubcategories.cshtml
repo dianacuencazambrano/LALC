@@ -86,19 +86,19 @@
 <div class="cards">
     @foreach (var item in Model)
     {
-        <div class="card text-center text-white bg-primary mb-3" onclick="location.href = '@Url.Action("SpecificConcepts", "Conceptoes", new { id=item.SubcategoriaID}) '">
-            <div class="card-body">
-                <div class="dropdown">
-                    <button class="dropbtn card pull-right">+</button>
-                    <div class="dropdown-content">
-                        <a href="@Url.Action("Edit", "Subcategorias", new { id=item.SubcategoriaID})">Editar</a>
-                        <a href="@Url.Action("Delete", "Subcategorias", new { id=item.SubcategoriaID})">Eliminar</a>
-                    </div>
+    <div class="card text-center text-white mb-3" style="background-color: @item.Color" onclick="location.href = '@Url.Action("SpecificConcepts", "Conceptoes", new { id=item.SubcategoriaID}) '">
+        <div class="card-body">
+            <div class="dropdown">
+                <button class="dropbtn card pull-right">+</button>
+                <div class="dropdown-content">
+                    <a href="@Url.Action("Edit", "Subcategorias", new { id=item.SubcategoriaID})">Editar</a>
+                    <a href="@Url.Action("Delete", "Subcategorias", new { id=item.SubcategoriaID})">Eliminar</a>
                 </div>
-                <h5 class="card-title">@item.Nombre</h5>
-                <p class="card-text">@item.Descripcion</p>
             </div>
+            <h5 class="card-title">@item.Nombre</h5>
+            <p class="card-text">@item.Descripcion</p>
         </div>
+    </div>
     }
 </div>
 
