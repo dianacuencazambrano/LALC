@@ -20,12 +20,38 @@ namespace LALC.Controllers
         public ActionResult Index(String Titulo,int? pagina)
         {
             var categoria = from s in db.Categoria select s;
+            List<Categoria> categorias = new List<Categoria>();
             if (!String.IsNullOrEmpty(Titulo))
             {
                 categoria = categoria.Where(s => s.Nombre.Contains(Titulo));
-                return View(categoria.ToList().ToPagedList(pagina ??  1,12));
+                return View(categoria.ToList().ToPagedList(pagina ?? 1, 12));
             }
-            return View(db.Categoria.ToList().ToPagedList(pagina ?? 1, 12));
+            foreach (var ct in categoria.ToList())
+            {
+                if (!ct.esPrioritaria)
+                {
+                    categorias.Add(ct);
+                }
+            }
+            categorias = categorias.OrderBy(ct=>ct.Nombre).ToList();
+            return View(categorias.ToPagedList(pagina ?? 1, 12));
+        }
+
+        public static List<Categoria> getPrioritarias()
+        {
+            LALCDb db = new LALCDb();
+            var categoria = from s in db.Categoria select s;
+            List<Categoria> cat = categoria.ToList();
+            List<Categoria> prioritarias = new List<Categoria>();
+            foreach (var ct in cat)
+            {
+                if (ct.esPrioritaria)
+                {
+                    prioritarias.Add(ct);
+                }
+            }
+            prioritarias = prioritarias.OrderBy(c => c.Nombre).ToList();
+            return prioritarias;
         }
 
         // GET: Categorias/Details/5

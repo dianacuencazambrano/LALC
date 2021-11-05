@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace LALC.Models
 {
+    
     public class Concepto
     {
         public int ConceptoID { get; set; }

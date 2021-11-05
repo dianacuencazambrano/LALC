@@ -82,11 +82,39 @@
         background-color: transparent;
         }
 </style>
+<h4>Prioritarias</h4>
+<div class="cards">
+    @{
+                List<LALC.Models.Categoria> prioritarias = LALC.Controllers.CategoriasController.getPrioritarias();
+                foreach (var item in prioritarias)
+                {
+                    if (item.esPrioritaria)
+                    {
+                        <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
+                            <div class="card-body mx-0 px-0">
+                                <div class="dropdown">
+                                    <button class="dropbtn card pull-right">+</button>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
+                                        <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">@item.Nombre</h5>
+                                <p class="card-text">@item.Descripcion</p>
+                            </div>
+                        </div>
+                    }
 
+                }
+    }
+</div>
+<hr />
 
 <div class="cards">
     @foreach (var item in Model)
     {
+        if (!item.esPrioritaria)
+        {
             <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
                 <div class="card-body mx-0 px-0">
                     <div class="dropdown">
@@ -95,12 +123,14 @@
                             <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
                             <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
                         </div>
-                    </div>                    
+                    </div>
                     <h5 class="card-title">@item.Nombre</h5>
                     <p class="card-text">@item.Descripcion</p>
                 </div>
             </div>
-            }
+        }
+    }
+
 </div>
 
 

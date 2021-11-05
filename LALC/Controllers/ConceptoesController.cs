@@ -7,15 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LALC.Models;
+using Newtonsoft.Json;
 using PagedList;
 using PagedList.Mvc;
 
 namespace LALC.Controllers
 {
+    
     public class ConceptoesController : Controller
     {
         private LALCDb db = new LALCDb();
-        public int specificID = -1;
+        public static int specificID = -1;
         // GET: Conceptoes
         public ActionResult Index(String TituloC)
         {
@@ -51,6 +53,7 @@ namespace LALC.Controllers
             }
             var concepto = from s in db.Concepto select s;
             concepto = concepto.Where(s => s.SubcategoriaID == id);
+
             if (concepto == null)
             {
                 return HttpNotFound();
@@ -71,14 +74,17 @@ namespace LALC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            concepto = concepto.Where(s => s.SubcategoriaID == specificID);
             if (id != null) { specificID = (int)id; }
 
             return View(concepto);
         }
-
-        public Concepto actualizarConceptoRandom()
+        
+        public JsonResult  actualizarConceptoRandom()
         {
             Random a = new Random();
+            LALCDb db = new LALCDb();
             var concepto = from s in db.Concepto select s;
             concepto = concepto.Where(s => s.SubcategoriaID == specificID);
             if (concepto == null)
@@ -86,9 +92,11 @@ namespace LALC.Controllers
                 return null;
             }
             List<Concepto> conceptos = concepto.ToList();
-            int v = a.Next(0, conceptos.Count);
+            int v = a.Next(0, conceptos.Count-1);
             Concepto c_random = conceptos[v];
-            return c_random;
+
+            var json = JsonConvert.SerializeObject(c_random);
+            return Json(json,JsonRequestBehavior.AllowGet);
         }
 
         public int getItem(int id)

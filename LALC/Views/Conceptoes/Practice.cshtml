@@ -64,21 +64,38 @@
     }
 </style>
 
-@{
-    
 
+    
     <div class="flip-card">
-    <div class="flip-card-inner">
-        <div class="flip-card-front">
-            <p id="titulo">@c_random.Titulo</p>
-        </div>
-        <div class="flip-card-back">
-            <p id="definicion">@c_random.Definicion</p>
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="c_card">
+                <p id="c_titulo"></p>
+            </div>
+            <div class="flip-card-back">
+                <p id="c_definicion"></p>
+            </div>
         </div>
     </div>
-</div>}
 
 
+<input type="button" onclick="BtnClick()" value="Click me"/>
+
+<script>
+    function BtnClick() {
+        $.ajax({
+            url: "/Conceptoes/actualizarConceptoRandom",
+            method: "GET",
+            sucess: function (data) {
+                console.log(data);
+                data = JSON.parse(data);
+                console.log(data);
+                //$("#c_titulo").text(data.Titulo)
+            }, error: function (err) {
+                console.error(err);
+            }
+        })
+    }
+</script>
 
 
 
@@ -91,6 +108,7 @@
     </div>
 </div>
 <br />
+
 <div class="row">
     <div class="col">
         <button type="button" id="bt2" class="btn btn-dark fs-5" onclick="" style="width:18%"> Incorrecto :c</button>
@@ -142,9 +160,9 @@
     let valor = 0;
     let btnCor = document.getElementById('bt2');
 
-btnInc.addEventListener("click", () => {value++; numContainer.textContent = value});
-btnCor.addEventListener("click", () => {valor++; inco.textContent = valor });
-btnInc.addEventListener("click", () => {contenidoContainer.textContent = "Hola"; tituloContainer.textContent = "XD"});
+    btnInc.addEventListener("click", () => { value++; numContainer.textContent = value });
+    btnCor.addEventListener("click", () => { valor++; inco.textContent = valor });
+    btnInc.addEventListener("click", () => { contenidoContainer.textContent = "Hola"; tituloContainer.textContent = "XD" });
 </script>
 
 
