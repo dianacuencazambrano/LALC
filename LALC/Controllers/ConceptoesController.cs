@@ -52,8 +52,12 @@ namespace LALC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var concepto = from s in db.Concepto select s;
+            List<Concepto> conceptos = new List<Concepto>();
             concepto = concepto.Where(s => s.SubcategoriaID == id);
-
+            foreach (var cp in concepto.ToList())
+            {
+                conceptos.Add(cp);
+            }
             if (concepto == null)
             {
                 return HttpNotFound();
@@ -63,28 +67,30 @@ namespace LALC.Controllers
                 concepto = concepto.Where(s => s.Titulo.Contains(TituloC));
                 return View(concepto.ToList().ToPagedList(pagina ?? 1, 12));
             }
-            return View(concepto.ToList().ToList().ToPagedList(pagina ?? 1, 12));
+            conceptos = conceptos.OrderBy(cp => cp.Titulo).ToList();
+            return View(conceptos.ToPagedList(pagina ?? 1, 12));
         }
 
         public ActionResult Practice(int? id)
         {
+            Random a = new Random();
             var concepto = from s in db.Concepto select s;
             concepto = concepto.Where(s => s.SubcategoriaID == id);
             if (concepto == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             concepto = concepto.Where(s => s.SubcategoriaID == specificID);
             if (id != null) { specificID = (int)id; }
-
-            return View(concepto);
+            List<Concepto> conceptos = concepto.ToList();
+            int v = a.Next(0, conceptos.Count);
+            Concepto c_random = conceptos[v]; 
+            return View(c_random);
         }
         
-        public JsonResult  actualizarConceptoRandom()
+        public JsonResult  GetConceptoRandom()
         {
-            Random a = new Random();
-            LALCDb db = new LALCDb();
+            /*Random a = new Random();
             var concepto = from s in db.Concepto select s;
             concepto = concepto.Where(s => s.SubcategoriaID == specificID);
             if (concepto == null)
@@ -92,9 +98,10 @@ namespace LALC.Controllers
                 return null;
             }
             List<Concepto> conceptos = concepto.ToList();
-            int v = a.Next(0, conceptos.Count-1);
-            Concepto c_random = conceptos[v];
-
+            int v = a.Next(0, conceptos.Count);
+            Concepto c_random = conceptos[1];*/
+            Concepto c_random = new Concepto();
+            c_random.Titulo = "Prueba";
             var json = JsonConvert.SerializeObject(c_random);
             return Json(json,JsonRequestBehavior.AllowGet);
         }

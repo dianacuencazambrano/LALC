@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LALC.Models.Concepto>
+﻿@model LALC.Models.Concepto
 @{
     ViewBag.Title = "Practice";
 }
@@ -66,39 +66,19 @@
 
 
     
-    <div class="flip-card">
+ <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front" id="c_card">
-                <p id="c_titulo"></p>
+                <p id="c_titulo">@Model.Titulo</p>
             </div>
             <div class="flip-card-back">
-                <p id="c_definicion"></p>
+                <p id="c_definicion">@Model.Definicion</p>
             </div>
         </div>
-    </div>
+ </div>
 
 
 <input type="button" onclick="BtnClick()" value="Click me"/>
-
-<script>
-    function BtnClick() {
-        $.ajax({
-            url: "/Conceptoes/actualizarConceptoRandom",
-            method: "GET",
-            sucess: function (data) {
-                console.log(data);
-                data = JSON.parse(data);
-                console.log(data);
-                //$("#c_titulo").text(data.Titulo)
-            }, error: function (err) {
-                console.error(err);
-            }
-        })
-    }
-</script>
-
-
-
 
 
 <br />
