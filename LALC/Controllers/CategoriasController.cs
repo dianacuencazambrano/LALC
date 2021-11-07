@@ -12,6 +12,8 @@ using PagedList.Mvc;
 
 namespace LALC.Controllers
 {
+
+    [Authorize]
     public class CategoriasController : Controller
     {
         private LALCDb db = new LALCDb();

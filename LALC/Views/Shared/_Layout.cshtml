@@ -21,6 +21,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href=@Url.Action("Index", "Conceptoes")>Conceptos</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                @Html.ActionLink("Cerrar Sesión", "LogOut", "Auth")
+                            </li>
+                            <li>
+                                <a>@User.Identity.Name</a>
+                            </li>
+                            
+                        }
+                        else
+                        {
+                                <li>
+                                    @Html.ActionLink("Iniciar Sesión", "Login", "Auth")
+                                </li>
+                        }
                     </ul>
                 </div>
             </div>

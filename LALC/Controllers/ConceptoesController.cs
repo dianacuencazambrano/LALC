@@ -13,7 +13,7 @@ using PagedList.Mvc;
 
 namespace LALC.Controllers
 {
-    
+    [Authorize]
     public class ConceptoesController : Controller
     {
         private LALCDb db = new LALCDb();

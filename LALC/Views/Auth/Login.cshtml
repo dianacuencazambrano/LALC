@@ -1,0 +1,25 @@
+﻿@model LALC.Models.Usuario
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2> Ingresa tus datos</h2>
+
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(u => u.nombre, "Nickname")
+    @Html.TextBoxFor(u => u.nombre)
+    <br />
+    @Html.LabelFor(u => u.email, "Correo Electrónico")
+    @Html.TextBoxFor(u => u.email, new { type = "email" })
+    <br />
+    @Html.LabelFor(u => u.password, "Contraseña")
+    @Html.TextBoxFor(u => u.password, new { type = "password" })
+    <br />
+    <button>Ingresar</button>
+    
+}
+<br />
+@TempData["mensaje"]

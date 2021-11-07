@@ -10,7 +10,7 @@ using LALC.Models;
 
 namespace LALC.Controllers
 {
-    //correccion
+    [Authorize]
     public class PracticasController : Controller
     {
         public static int total = -1;
