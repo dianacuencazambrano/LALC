@@ -12,8 +12,7 @@ namespace LALC.Controllers
 {
     public class PracticasController : Controller
     {
-        public static int corr = 0;
-        public static int incorr = 0;
+        public static int total = -1;
         private LALCDb db = new LALCDb();
 
         // GET: Practicas
@@ -43,25 +42,20 @@ namespace LALC.Controllers
             return View();
         }
 
-        public static void AumentarCorrecto()
+        public static int AumentarTotal()
         {
-            corr++;
+            total++;
+            return 1;
         }
 
-        public static int AumentarIncorrecto()
-        {
-            incorr++;
-            return 0;
-        }
+        
         public ActionResult agregarPractica()
         {
             Practica p = new Practica();
-            p.Correctos = corr;
-            p.Incorrectos = incorr;
+            p.CantidadConceptos = total;
             p.Fecha = DateTime.Now;
             Create(p);
-            corr = 0;
-            incorr = 0;
+            total = -1;
             return RedirectToAction("Index","Practicas");
         }
 
@@ -77,6 +71,7 @@ namespace LALC.Controllers
             List<Concepto> conceptos = concepto.ToList();
             int v = a.Next(0, conceptos.Count);
             Concepto c_random = conceptos[v];
+            AumentarTotal();
             return View(c_random);
         }
 

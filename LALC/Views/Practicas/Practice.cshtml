@@ -89,7 +89,7 @@
 
 <div class="row">
     <div class="col">
-        <button type="button" class="btn btn-dark fs-5" onclick="aumentarC" style="width:18%"> Correcto :3</button>
+        <button type="button" class="btn btn-dark fs-5" onclick="" style="width:18%"> Correcto :3</button>
     </div>
 </div>
 <br />
@@ -97,7 +97,7 @@
 
 <div class="row">
     <div class="col">
-        <button type="button" class="btn btn-dark fs-5" onclick="location.href='@LALC.Controllers.PracticasController.AumentarIncorrecto()" style="width:18%"> Incorrecto :c</button>
+        <button type="button" class="btn btn-dark fs-5" onclick="" style="width:18%"> Incorrecto :c</button>
         <p id="warning"></p>
     </div>
 </div>
@@ -112,27 +112,7 @@
 <br />
 
 <script>
-    function XD{
-        $.ajax([
-            url: 'Practicas.cs/AumentarCorrecto'
-        ])
+    function cambioVerde() {
+
     }
 </script>
-
-<script type="text/javascript">
-    //Default.aspx
-    function aumentarC() {
-        $.ajax({
-            type: "POST",
-            url: 'Practicas.cs/AumentarCorrecto',
-            data: "mystring",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (msg) {
-                alert("XD");
-            },
-            error: function (e) {
-                $("#divResult").html("Todo mal contigo");
-            }
-        });
-    }
