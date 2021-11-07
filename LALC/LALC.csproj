@@ -135,6 +135,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ConceptoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PracticasController.cs" />
     <Compile Include="Controllers\SubcategoriasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +144,7 @@
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Concepto.cs" />
     <Compile Include="Models\LALCDb.cs" />
+    <Compile Include="Models\Practica.cs" />
     <Compile Include="Models\Subcategoria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -202,6 +204,11 @@
     <Content Include="Views\Conceptoes\Index.cshtml" />
     <Content Include="Views\Conceptoes\SpecificConcepts.cshtml" />
     <Content Include="Views\Conceptoes\Practice.cshtml" />
+    <Content Include="Views\Practicas\Create.cshtml" />
+    <Content Include="Views\Practicas\Delete.cshtml" />
+    <Content Include="Views\Practicas\Details.cshtml" />
+    <Content Include="Views\Practicas\Edit.cshtml" />
+    <Content Include="Views\Practicas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

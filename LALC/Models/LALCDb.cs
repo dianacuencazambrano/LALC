@@ -13,5 +13,6 @@ namespace LALC.Models
 
         public DbSet<Subcategoria> Subcategoria { get; set; }
 
+        public System.Data.Entity.DbSet<LALC.Models.Practica> Practicas { get; set; }
     }
 }
