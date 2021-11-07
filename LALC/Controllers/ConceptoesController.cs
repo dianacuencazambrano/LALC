@@ -17,7 +17,7 @@ namespace LALC.Controllers
     public class ConceptoesController : Controller
     {
         private LALCDb db = new LALCDb();
-        public static int specificID = -1;
+        
         public static int subcategoriaID = -1;
         // GET: Conceptoes
         public ActionResult Index(String TituloC)
@@ -73,22 +73,7 @@ namespace LALC.Controllers
             return View(conceptos.ToPagedList(pagina ?? 1, 12));
         }
 
-        public ActionResult Practice(int? id)
-        {
-            Random a = new Random();
-            var concepto = from s in db.Concepto select s;
-            concepto = concepto.Where(s => s.SubcategoriaID == id);
-            if (concepto == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            concepto = concepto.Where(s => s.SubcategoriaID == specificID);
-            if (id != null) { specificID = (int)id; }
-            List<Concepto> conceptos = concepto.ToList();
-            int v = a.Next(0, conceptos.Count);
-            Concepto c_random = conceptos[v]; 
-            return View(c_random);
-        }
+        
         
         public JsonResult  GetConceptoRandom()
         {

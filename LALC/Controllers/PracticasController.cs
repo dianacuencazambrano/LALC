@@ -12,6 +12,8 @@ namespace LALC.Controllers
 {
     public class PracticasController : Controller
     {
+        public static int corr = 0;
+        public static int incorr = 0;
         private LALCDb db = new LALCDb();
 
         // GET: Practicas
@@ -40,6 +42,44 @@ namespace LALC.Controllers
         {
             return View();
         }
+
+        public static void AumentarCorrecto()
+        {
+            corr++;
+        }
+
+        public static int AumentarIncorrecto()
+        {
+            incorr++;
+            return 0;
+        }
+        public ActionResult agregarPractica()
+        {
+            Practica p = new Practica();
+            p.Correctos = corr;
+            p.Incorrectos = incorr;
+            p.Fecha = DateTime.Now;
+            Create(p);
+            corr = 0;
+            incorr = 0;
+            return RedirectToAction("Index","Practicas");
+        }
+
+        public ActionResult Practice(int? id)
+        {
+            Random a = new Random();
+            var concepto = from s in db.Concepto select s;
+            concepto = concepto.Where(s => s.SubcategoriaID == id);
+            if (concepto == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Concepto> conceptos = concepto.ToList();
+            int v = a.Next(0, conceptos.Count);
+            Concepto c_random = conceptos[v];
+            return View(c_random);
+        }
+
 
         // POST: Practicas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
@@ -73,6 +113,7 @@ namespace LALC.Controllers
             return View(practica);
         }
 
+        
         // POST: Practicas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
