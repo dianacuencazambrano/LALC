@@ -15,7 +15,7 @@ namespace LALC.Controllers
     public class SubcategoriasController : Controller
     {
         private LALCDb db = new LALCDb();
-
+        private static int createId = 1;
         // GET: Subcategorias
         public ActionResult Index(String TituloS)
         {
@@ -27,18 +27,7 @@ namespace LALC.Controllers
             }
             return View(db.Subcategoria.ToList());
         }
-        /*
-        [HttpPost]
-        public ActionResult SpecificSubcategories(String TituloS)
-        {
-            var Subcategoria = from s in db.Subcategoria select s;
-            if (!String.IsNullOrEmpty(TituloS))
-            {
-                Subcategoria = Subcategoria.Where(s => s.Nombre.Contains(TituloS));
-                return View(Subcategoria.ToList());
-            }
-            return View(db.Subcategoria.ToList());
-        }*/
+
 
         public ActionResult SpecificSubcategories(int? id, String TituloS,int? pagina)
         {
@@ -46,6 +35,7 @@ namespace LALC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            createId = (int)id;
             var subcategoria = from s in db.Subcategoria select s;
             List<Subcategoria> subcategorias = new List<Subcategoria>();
             subcategoria = subcategoria.Where(s => s.CategoriaID == id);
@@ -81,8 +71,13 @@ namespace LALC.Controllers
             return View(subcategoria);
         }
 
+        public static int getCreateId()
+        {
+            return createId;
+        }
+
         // GET: Subcategorias/Create
-        public ActionResult Create()
+        public ActionResult Create(String CategoriaID)
         {
             ViewBag.CategoriaID = new SelectList(db.Categoria, "CategoriaID", "Nombre");
             return View();

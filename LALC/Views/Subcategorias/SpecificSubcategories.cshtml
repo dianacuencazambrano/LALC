@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Subcategorias")'">Crear</button>
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Subcategorias",new { CategoriaId = LALC.Controllers.SubcategoriasController.getCreateId() })'">Crear</button>
     </div>
     <div class="col">
         @using (Html.BeginForm("SpecificSubcategories", "Subcategorias", FormMethod.Get))
