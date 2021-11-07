@@ -213,6 +213,7 @@
     <Content Include="Views\Practicas\Index.cshtml" />
     <Content Include="Views\Practicas\Practice.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Registrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

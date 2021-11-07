@@ -1,14 +1,16 @@
 ﻿@model LALC.Models.Usuario
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Registro";
 }
 
-<h2> Ingresa tus datos</h2>
+<h2> Registrate</h2>
 
 <br />
 
 @using (Html.BeginForm())
 {
+    @Html.LabelFor(u => u.nombre, "Nickname")
+    @Html.TextBoxFor(u => u.nombre)
     <br />
     @Html.LabelFor(u => u.email, "Correo Electrónico")
     @Html.TextBoxFor(u => u.email, new { type = "email" })
@@ -16,7 +18,7 @@
     @Html.LabelFor(u => u.password, "Contraseña")
     @Html.TextBoxFor(u => u.password, new { type = "password" })
     <br />
-    <button>Ingresar</button>
+    <input type="submit" value="Crear" method="Registrar" class="btn btn-default fs-5" style="width: auto; color: white; background: #3a70cf" />
     <br />
 }
 <br />

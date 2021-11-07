@@ -24,11 +24,12 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>
-                                @Html.ActionLink("Cerrar Sesión", "LogOut", "Auth")
+                                <a style="color:navajowhite">   @User.Identity.Name   </a>
                             </li>
                             <li>
-                                <a>@User.Identity.Name</a>
+                                @Html.ActionLink("   Cerrar Sesión  ", "LogOut", "Auth")
                             </li>
+                            
                             
                         }
                         else

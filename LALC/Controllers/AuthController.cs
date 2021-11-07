@@ -10,6 +10,7 @@ namespace LALC.Controllers
 {
     public class AuthController : Controller
     {
+        private LALCDb db = new LALCDb();
         public ActionResult Login()
         {
             return View();
@@ -30,10 +31,30 @@ namespace LALC.Controllers
             return View(usuario);
         }
 
+        public ActionResult Registrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registrar([Bind(Include = "UsuarioID,email,password,nombre")] Usuario usuario, string ReturnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Usuario.Add(usuario);
+                db.SaveChanges();
+                FormsAuthentication.SetAuthCookie(usuario.email, false);
+                if (ReturnUrl != null)
+                {
+                    return Redirect(ReturnUrl);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Login",usuario);
+        }
 
         private bool IsValid(Usuario usuario)
         {
-            
             return usuario.Autenticar();
         }
 

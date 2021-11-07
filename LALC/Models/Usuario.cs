@@ -18,9 +18,10 @@ namespace LALC.Models
         [Required]
         public String nombre{ get; set; }
 
-        private LALCDb db = new LALCDb();
+        
         public bool Autenticar()
         {
+            LALCDb db = new LALCDb();
             return db.Usuario.Where(u => u.email == this.email && u.password == this.password).FirstOrDefault() != null;
         }
     }
