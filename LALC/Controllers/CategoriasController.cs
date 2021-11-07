@@ -37,6 +37,29 @@ namespace LALC.Controllers
             return View(categorias.ToPagedList(pagina ?? 1, 12));
         }
 
+        public ActionResult SaveData()
+        {
+            LALCDb db = new LALCDb();
+            var categoria = from s in db.Categoria select s;
+            List<Categoria> categorias = categoria.ToList();
+            if(categorias.Count==0)
+            {
+                Categoria Lengua = new Categoria();
+                Lengua.Nombre = "Lenguaje";
+                Lengua.Descripcion = "Son letras";
+                Lengua.Color = "#8a2e28";
+                Create(Lengua);
+                Categoria Mate = new Categoria();
+                Mate.Nombre = "Matematicas";
+                Mate.Descripcion = "Son numeros";
+                Mate.Color = "#1a4a61";
+                Create(Mate);
+
+            }
+            return RedirectToAction("Index","Home");
+        }
+
+
         public static List<Categoria> getPrioritarias()
         {
             LALCDb db = new LALCDb();
