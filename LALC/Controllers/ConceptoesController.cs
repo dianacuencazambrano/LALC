@@ -18,6 +18,7 @@ namespace LALC.Controllers
     {
         private LALCDb db = new LALCDb();
         public static int specificID = -1;
+        public static int subcategoriaID = -1;
         // GET: Conceptoes
         public ActionResult Index(String TituloC)
         {
@@ -51,6 +52,7 @@ namespace LALC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            subcategoriaID = (int)id;
             var concepto = from s in db.Concepto select s;
             List<Concepto> conceptos = new List<Concepto>();
             concepto = concepto.Where(s => s.SubcategoriaID == id);
@@ -114,8 +116,13 @@ namespace LALC.Controllers
             return a.Next(0, concepto.ToList().Count);
         }
 
+        public static int getCreateId()
+        {
+            return subcategoriaID;
+        }
+
         // GET: Conceptoes/Create
-        public ActionResult Create()
+        public ActionResult Create(String SubcategoriaID)
         {
             ViewBag.SubcategoriaID = new SelectList(db.Subcategoria, "SubcategoriaID", "Nombre");
             return View();
