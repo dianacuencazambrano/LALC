@@ -3,20 +3,33 @@
     ViewBag.Title = "Registro";
 }
 
-<h2> Registrate</h2>
+<br />
+
+<h2 style="font-family:'OCR A'"> Regístrate</h2>
 
 <br />
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(u => u.nombre, "Nickname")
-    @Html.TextBoxFor(u => u.nombre)
-    <br />
-    @Html.LabelFor(u => u.email, "Correo Electrónico")
-    @Html.TextBoxFor(u => u.email, new { type = "email" })
-    <br />
-    @Html.LabelFor(u => u.password, "Contraseña")
-    @Html.TextBoxFor(u => u.password, new { type = "password" })
+    <div class="form-group">
+        <b style="font-size:20px"> @Html.LabelFor(u => u.nombre, "Nickname") </b>
+        <div class="col-md-7" style="margin-top: 7px; margin-bottom:15px">
+            @Html.TextBoxFor(u => u.nombre)
+        </div>
+    </div>
+    <div class="form-group">
+        <b style="font-size:20px">@Html.LabelFor(u => u.email, "Correo Electrónico")</b>
+        <div class="col-md-7" style="margin-top: 7px; margin-bottom: 15px">
+            @Html.TextBoxFor(u => u.email, new { type = "email" })
+        </div>
+    </div>
+    <div class="form-group">
+        <b style="font-size:20px" d>@Html.LabelFor(u => u.password, "Contraseña")</b>
+        <div class="col-md-1" style="margin-top: 7px; margin-bottom: 15px">
+            @Html.TextBoxFor(u => u.password, new { type = "password" })
+        </div>
+    </div>
+
     <br />
     <input type="submit" value="Crear" method="Registrar" class="btn btn-default fs-5" style="width: auto; color: white; background: #3a70cf" />
     <br />
