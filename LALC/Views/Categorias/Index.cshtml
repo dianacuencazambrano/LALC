@@ -9,19 +9,20 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <br />
-<h2>CATEGORÍAS</h2>
+<h2 style="font-family:'Poppins'">CATEGORÍAS</h2>
 <br />
-
 <div class="row">
     <div class="col">
         <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Categorias")'">Crear</button>
     </div>
     <div class="col">
-        @using (Html.BeginForm("Index", "Categorias", FormMethod.Get))
-        {
-            @Html.TextBox("Titulo")
-            <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
-        }
+        <form class="d-flex">
+            @using (Html.BeginForm("Index", "Categorias", FormMethod.Get, new { style = "margin-right:80px" }))
+            {
+                <input name="Titulo" class="form-control me-2" type="search" placeholder="Ingrese su concepto" style="width:250px">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            }
+        </form>
     </div>
 </div>
 
