@@ -1,10 +1,12 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
-@model IPagedList<LALC.Models.Categoria>
+﻿
+@model PagedList.IPagedList<LALC.Models.Categoria>
 
 @{
     ViewBag.Title = "Categorías";
 }
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <br />
 <h2>CATEGORÍAS</h2>
@@ -42,7 +44,8 @@
         margin-left: 180px;
         object-position: right;
     }
-    .p{
+
+    .p {
         padding-top: 0px;
         margin-top: 0px;
     }
@@ -80,33 +83,33 @@
     /* Change the background color of the dropdown button when the dropdown content is shown */
     .dropdown:hover .dropbtn {
         background-color: transparent;
-        }
+    }
 </style>
 <br />
 <h4>Prioritarias</h4>
 <div class="cards">
     @{
-                List<LALC.Models.Categoria> prioritarias = LALC.Controllers.CategoriasController.getPrioritarias();
-                foreach (var item in prioritarias)
-                {
-                    if (item.esPrioritaria)
-                    {
-                        <div class="card text-center text-white mb-3" style ="background-color:@item.Color; max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
-                            <div class="card-body mx-0 px-0">
-                                <div class="dropdown">
-                                    <button class="dropbtn card pull-right">+</button>
-                                    <div class="dropdown-content">
-                                        <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
-                                        <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
-                                    </div>
-                                </div>
-                                <h5 class="card-title">@item.Nombre</h5>
-                                <p class="card-text">@item.Descripcion</p>
+        List<LALC.Models.Categoria> prioritarias = LALC.Controllers.CategoriasController.getPrioritarias();
+        foreach (var item in prioritarias)
+        {
+            if (item.esPrioritaria)
+            {
+                <div class="card text-center text-white mb-3" style="background-color:@item.Color; max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
+                    <div class="card-body mx-0 px-0">
+                        <div class="dropdown">
+                            <button class="dropbtn card pull-right">+</button>
+                            <div class="dropdown-content">
+                                <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
+                                <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
                             </div>
                         </div>
-                    }
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">@item.Descripcion</p>
+                    </div>
+                </div>
+            }
 
-                }
+        }
     }
 </div>
 <hr />
@@ -116,23 +119,24 @@
     {
         if (!item.esPrioritaria)
         {
-    <div class="card text-center text-white mb-3" style="background-color:@item.Color; max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
-        <div class="card-body mx-0 px-0">
-            <div class="dropdown">
-                <button class="dropbtn card pull-right">+</button>
-                <div class="dropdown-content">
-                    <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
-                    <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
+            <div class="card text-center text-white mb-3" style="background-color:@item.Color; max-width: 18rem;" onclick="location.href = '@Url.Action("SpecificSubcategories", "Subcategorias", new { id=item.CategoriaID}) '">
+                <div class="card-body mx-0 px-0">
+                    <div class="dropdown">
+                        <button class="dropbtn card pull-right">+</button>
+                        <div class="dropdown-content">
+                            <a href="@Url.Action("Edit", "Categorias", new { id=item.CategoriaID})">Editar</a>
+                            <a href="@Url.Action("Delete", "Categorias", new { id=item.CategoriaID})">Eliminar</a>
+                        </div>
+                    </div>
+                    <h5 class="card-title">@item.Nombre</h5>
+                    <p class="card-text">@item.Descripcion</p>
                 </div>
             </div>
-            <h5 class="card-title">@item.Nombre</h5>
-            <p class="card-text">@item.Descripcion</p>
-        </div>
-    </div>
         }
     }
 
 </div>
 
 
-@Html.PagedListPager(Model,pagina => Url.Action("Index", new { pagina, Titulo = Request.QueryString["Titulo"]}))
+@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina, Titulo = Request.QueryString["Titulo"] }))
+
