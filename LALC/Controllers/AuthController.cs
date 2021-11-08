@@ -50,7 +50,8 @@ namespace LALC.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-            return View("Login",usuario);
+            TempData["mensaje"] = "Campos ingresados no son válidos";
+            return View("Registrar");
         }
 
         private bool IsValid(Usuario usuario)
