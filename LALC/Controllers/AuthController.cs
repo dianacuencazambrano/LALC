@@ -50,7 +50,7 @@ namespace LALC.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-            return View("Login",usuario);
+            return View("Registrar");
         }
 
         private bool IsValid(Usuario usuario)

@@ -13,17 +13,14 @@
 <div class="center">
     <img src="~/img/LALC_Home.png" width="800" />
 </div>
-<br />
-<input type="button" value="Guardar Datos" onclick="location.href='@Url.Action("SaveData", "Categorias")'" />
-<br />
 
 @if (!User.Identity.IsAuthenticated)
 {
-<div class="row"  >
-    <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Auth")'"style=" width:fit-content; margin:30px" />
-    
-    <input type="button" value="Registrarse" onclick="location.href='@Url.Action("Registrar", "Auth")'"style="width: fit-content; margin: 30px" />
+<div class="d-grid gap-3 col-2 mx-auto"  >
+    <input type="button" value="Login" class="btn btn-primary" onclick="location.href='@Url.Action("Login", "Auth")'"style="width: 300px;color:black;background-color: white; border-color: black;border-radius:unset; font-family:Round_3D_Monogram_Center; font-size:70px" />
+    <input type="button" value="Registrarse" class="btn btn-primary" onclick="location.href='@Url.Action("Registrar", "Auth")'"style="width: 300px; background-color: black; border-color: black; border-radius: unset; font-family: Round_3D_Monogram_Center; font-size: 70px "/>
 </div>
     
 }
 
+ 
