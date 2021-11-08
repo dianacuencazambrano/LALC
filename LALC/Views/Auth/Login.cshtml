@@ -3,28 +3,48 @@
     ViewBag.Title = "Login";
 }
 
-<br />
-<h2> Ingresa tus datos</h2>
-<br />
+<head>
+    <style>
+        input[type=submit] {
+            /* your styles here, You can just increase its font size below*/
+            font-size: 40px;
+            font-weight: bold;
+            background-color: #ffedca;
+        }
+    </style>
+</head>
 
 @using (Html.BeginForm())
 {
-    <div class="form-group">
-        <b style="font-size:20px">@Html.LabelFor(u => u.email, "Correo Electrónico")</b>
-        <div class="col-md-7" style="margin-top: 7px; margin-bottom: 15px">
-            @Html.TextBoxFor(u => u.email, new { type = "email" })
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 pb-0 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-3">
+                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                            <p class="text-white-50 mb-5" style="font-size:26px">Ingresa tu email y contraseña</p>
+                            <div class="form-outline form-white mb-4" style="margin:0px">
+                                <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                                <label class="form-label" for="email" style="font-size:20px">Email</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                <label class="form-label" for="password" style="font-size:20px">Password</label>
+                                @TempData["mensaje"]
+                            </div>
+                            <input type="submit" value="Ingresar" method="Login" class="btn btn-default fs-5" style="width: auto; color: white; background: #3a70cf" />
+                            
+                            <p class="mb-0" style="margin-top:30px;margin-bottom:0p">¿No tienes una cuenta? <a href='@Url.Action("Registrar", "Auth")' class="text-white-50 fw-bold"> Regístrate</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <b style="font-size:20px" d>@Html.LabelFor(u => u.password, "Contraseña")</b>
-        <div class="col-md-7" style="margin-top: 7px; margin-bottom: 15px">
-            @Html.TextBoxFor(u => u.password, new { type = "password" })
-        </div>
-    </div>
-    <br />
-    <input type="submit" value="Ingresar" method="Login" class="btn btn-default fs-5" style="width: auto; color: white; background: #3a70cf" />
-    <input type="button" value="Registrarse" onclick="location.href='@Url.Action("Registrar", "Auth")'" class="btn btn-default fs-5" style="width: auto; color: white; background: #3a70cf" />
     <br />
 }
 <br />
-@TempData["mensaje"]
+<br />
+

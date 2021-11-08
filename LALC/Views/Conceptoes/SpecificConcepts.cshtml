@@ -4,23 +4,24 @@
 @{
     ViewBag.Title = "SpecificConcepts";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <br />
 <h2>CONCEPTOS</h2>
 <br />
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes", new { SubcategoriaId = LALC.Controllers.ConceptoesController.getCreateId() })'">Crear</button>
-            </div>    
-            <div class="col">               
-                    <form class="d-flex">
-                        @using (Html.BeginForm("SpecificConcepts", "Conceptoes", FormMethod.Get, new { style = "margin-right:80px" }))
-                        {
-                            <input name="TituloC" class="form-control me-2" type="search" placeholder="Ingrese su concepto" style="width:250px">
-                            <button class="btn btn-outline-success" type="submit">Buscar</button>
-                        }
-                    </form>               
-            </div>
-        </div>   
+<div class="row">
+    <div class="col">
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes", new { SubcategoriaId = LALC.Controllers.ConceptoesController.getCreateId() })'">Crear</button>
+    </div>
+    <div class="col">
+        <form class="d-flex">
+            @using (Html.BeginForm("SpecificConcepts", "Conceptoes", FormMethod.Get, new { style = "margin-right:80px" }))
+            {
+                <input name="TituloC" class="form-control me-2" type="search" placeholder="Ingrese su concepto" style="width:250px">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            }
+        </form>
+    </div>
+</div>
 
 
     <br />

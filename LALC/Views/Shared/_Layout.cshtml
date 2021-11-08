@@ -24,15 +24,14 @@
                 <form class="d-flex">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        @Html.ActionLink("Iniciar Sesión", "Login", "Auth")
+                        <button type="button" name="Iniciar Sesión" class="btn btn-light" onclick="location.href='@Url.Action("Login", "Auth")'" >Iniciar Sesión</button>
                     }
                     else
                     {
-                        
-                            <a style="color:navajowhite">   @User.Identity.Name   </a>
-                            <div style="margin-left:20px">
-                                @Html.ActionLink("   Cerrar Sesión  ", "LogOut", "Auth")
-                            </div>
+                        <a style="color:navajowhite">   @User.Identity.Name   </a>
+                        <div class="btn btn-light" type="button" style="margin-left:20px">
+                            @Html.ActionLink("   Cerrar Sesión  ", "LogOut", "Auth")
+                        </div>
                     }
                 </form>
             </div>
