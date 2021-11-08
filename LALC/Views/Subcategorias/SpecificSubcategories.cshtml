@@ -8,17 +8,18 @@
 <br />
 <h2>SUBCATEGORÍAS</h2>
 <br />
-
 <div class="row">
     <div class="col">
         <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Subcategorias",new { CategoriaId = LALC.Controllers.SubcategoriasController.getCreateId() })'">Crear</button>
     </div>
     <div class="col">
-        @using (Html.BeginForm("SpecificSubcategories", "Subcategorias", FormMethod.Get))
-        {
-            @Html.TextBox("TituloS")
-            <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
-        }
+        <form class="d-flex">
+            @using (Html.BeginForm("SpecificSubcategories", "Subcategorias", FormMethod.Get, new { style = "margin-right:80px" }))
+            {
+                <input name="TituloS" class="form-control me-2" type="search" placeholder="Ingrese su subcategoria" style="width:250px">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            }
+        </form>
     </div>
 </div>
 
@@ -86,19 +87,19 @@
 <div class="cards">
     @foreach (var item in Model)
     {
-    <div class="card text-center text-white mb-3" style="background-color: @item.Color" onclick="location.href = '@Url.Action("SpecificConcepts", "Conceptoes", new { id=item.SubcategoriaID}) '">
-        <div class="card-body">
-            <div class="dropdown">
-                <button class="dropbtn card pull-right">+</button>
-                <div class="dropdown-content">
-                    <a href="@Url.Action("Edit", "Subcategorias", new { id=item.SubcategoriaID})">Editar</a>
-                    <a href="@Url.Action("Delete", "Subcategorias", new { id=item.SubcategoriaID})">Eliminar</a>
+        <div class="card text-center text-white mb-3" style="background-color: @item.Color" onclick="location.href = '@Url.Action("SpecificConcepts", "Conceptoes", new { id=item.SubcategoriaID}) '">
+            <div class="card-body">
+                <div class="dropdown">
+                    <button class="dropbtn card pull-right">+</button>
+                    <div class="dropdown-content">
+                        <a href="@Url.Action("Edit", "Subcategorias", new { id=item.SubcategoriaID})">Editar</a>
+                        <a href="@Url.Action("Delete", "Subcategorias", new { id=item.SubcategoriaID})">Eliminar</a>
+                    </div>
                 </div>
+                <h5 class="card-title">@item.Nombre</h5>
+                <p class="card-text">@item.Descripcion</p>
             </div>
-            <h5 class="card-title">@item.Nombre</h5>
-            <p class="card-text">@item.Descripcion</p>
         </div>
-    </div>
     }
 </div>
 

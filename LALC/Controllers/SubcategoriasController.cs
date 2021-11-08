@@ -51,7 +51,7 @@ namespace LALC.Controllers
             if (!String.IsNullOrEmpty(TituloS))
             {
                 subcategoria = subcategoria.Where(s => s.Nombre.Contains(TituloS));
-                return View(subcategorias.ToPagedList(pagina ?? 1, 12));
+                return View(subcategoria.ToList().ToPagedList(pagina ?? 1, 12));
             }
             subcategorias = subcategorias.OrderBy(ct => ct.Nombre).ToList();
             return View(subcategorias.ToPagedList(pagina ?? 1, 12));
