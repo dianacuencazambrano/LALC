@@ -10,14 +10,16 @@
 <br />
 <div class="row">
     <div class="col">
-        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes", new { SubcategoriaId = LALC.Controllers.ConceptoesController.getCreateId()})'">Crear</button>
+        <button type="button" class="btn btn-dark fs-5" style="width:18%" onclick="location.href='@Url.Action("Create", "Conceptoes", new { SubcategoriaId = LALC.Controllers.ConceptoesController.getCreateId() })'">Crear</button>
     </div>
     <div class="col">
-        @using (Html.BeginForm("SpecificConcepts", "Conceptoes", FormMethod.Get))
-        {
-            @Html.TextBox("TituloC")
-            <input style="background: skyblue" class="justify-content-end" type="submit" value="Buscar" />
-        }
+        <form class="d-flex">
+            @using (Html.BeginForm("SpecificConcepts", "Conceptoes", FormMethod.Get, new { style = "margin-right:80px" }))
+            {
+                <input name="TituloC" class="form-control me-2" type="search" placeholder="Ingrese su concepto" style="width:250px">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            }
+        </form>
     </div>
 </div>
 
