@@ -11,11 +11,19 @@
     }
 </style>
 <div class="center">
-    <img src="~/img/LALC_Home.png" width="800"/>
+    <img src="~/img/LALC_Home.png" width="800" />
 </div>
 <br />
 <input type="button" value="Guardar Datos" onclick="location.href='@Url.Action("SaveData", "Categorias")'" />
 <br />
-<input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Auth")'" />
-<br />
-<input type="button" value="Registrarse" onclick="location.href='@Url.Action("Registrar", "Auth")'" />
+
+@if (!User.Identity.IsAuthenticated)
+{
+<div class="row"  >
+    <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Auth")'"style=" width:fit-content; margin:30px" />
+    
+    <input type="button" value="Registrarse" onclick="location.href='@Url.Action("Registrar", "Auth")'"style="width: fit-content; margin: 30px" />
+</div>
+    
+}
+
