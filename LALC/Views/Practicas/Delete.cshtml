@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CantidadConceptos)
+            Cantidad de Conceptos
         </dt>
 
         <dd>
@@ -31,9 +31,27 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="form-group">
+    <div class="row">
+        <div class="col" style="width:fit-content">
+            <input type="submit" value="Eliminar" class="btn btn-default fs-5" style="width: auto; color: white; background: #3a70cf" />
         </div>
+        <div class="col" style="width:fit-content">
+            <button type="button" class="btn btn-dark fs-5" style="width:auto" onclick="goBack()">Cancelar</button>
+            <script>
+                                function goBack() {
+                                    window.history.back();
+                                }
+            </script>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+
+    </div>
+</div>
     }
 </div>
