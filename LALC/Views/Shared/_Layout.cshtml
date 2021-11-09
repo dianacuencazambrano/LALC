@@ -18,22 +18,21 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         
                         <li class="nav-item">
-                            <a class="nav-link active" style="font-family: Round_Monogram_Center;font-size: 25px " aria-current="page" href=@Url.Action("Index", "Categorias")>Categorias</a>
+                            <a class="nav-link active" style="font-family: 'Segoe UI';font-size: 20px " aria-current="page" href=@Url.Action("Index", "Categorias")>Categorías</a>
                         </li>
                     </ul>
                 </div>
                 <form class="d-flex">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <button type="button" style="font-family: Round_Monogram_Center; padding-left: 10px; padding-right: 10px; font-size: 25px " name="Iniciar Sesión" class="btn btn-light" onclick="location.href='@Url.Action("Login", "Auth")'" >Iniciar Sesion</button>
+                        <button type="button" style="font-family: 'Segoe UI'; padding-left: 10px; padding-right: 10px; font-size: 20px " name="Iniciar Sesión" class="btn btn-light" onclick="location.href='@Url.Action("Login", "Auth")'" >Iniciar Sesión</button>
                     }
                     else
                     {
                         <a style="color:navajowhite; font-family: Rage;font-size:30px ">   @User.Identity.Name   </a>
                         <div class="btn btn-light" type="button" 
                              onclick="location.href = '@Url.Action("LogOut", "Auth") '" 
-                             style="margin-left: 20px; font-family: Round_Monogram_Center; font-size: 25px;color:black ">Cerrar Sesion
-                           
+                             style="margin-left: 20px; font-family: 'Segoe UI'; font-size: 20px; color: black ">Cerrar Sesión
                         </div>
                     }
                 </form>
