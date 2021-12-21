@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using LALC.BDService;
 using LALC.Models;
 using PagedList;
 using PagedList.Mvc;
@@ -18,11 +19,14 @@ namespace LALC.Controllers
     {
         private LALCDb db = new LALCDb();
         public static int id=0;
+        private GetData data = new GetData();
         // GET: Categorias
         public ActionResult Index(String Titulo,int? pagina)
         {
             var categoria = from s in db.Categoria select s;
             List<Categoria> categorias = new List<Categoria>();
+            int userid = data.getUserID();
+            categoria = categoria.Where(s => s.UsuarioID == userid);
             if (!String.IsNullOrEmpty(Titulo))
             {
                 categoria = categoria.Where(s => s.Nombre.Contains(Titulo));
@@ -65,7 +69,10 @@ namespace LALC.Controllers
         public static List<Categoria> getPrioritarias()
         {
             LALCDb db = new LALCDb();
+            GetData data = new GetData();
             var categoria = from s in db.Categoria select s;
+            int userid = data.getUserID();
+            categoria = categoria.Where(s => s.UsuarioID == userid);
             List<Categoria> cat = categoria.ToList();
             List<Categoria> prioritarias = new List<Categoria>();
             foreach (var ct in cat)
@@ -105,10 +112,14 @@ namespace LALC.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoriaID,Nombre,Color,Descripcion,esPrioritaria")] Categoria categoria)
+        public ActionResult Create([Bind(Include = "CategoriaID,UsuarioID,Nombre,Color,Descripcion,esPrioritaria")] Categoria categoria)
         {
+            /*var usuarios = from s in db.Usuario select s;
+            String userid = HttpContext.User.Identity.Name;
+            var usuario = usuarios.Single(s => s.email == userid);*/
             if (ModelState.IsValid)
             {
+                categoria.UsuarioID = data.getUserID();
                 db.Categoria.Add(categoria);
                 db.SaveChanges();
                 return RedirectToAction("Index");

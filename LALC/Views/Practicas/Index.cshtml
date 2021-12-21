@@ -13,6 +13,12 @@
             ID
         </th>
         <th>
+            Categoria
+        </th>
+        <th>
+            Subcategoria
+        </th>
+        <th>
             Cantidad de Conceptos
         </th>
         <th>
@@ -27,9 +33,15 @@
         @Html.DisplayFor(modelItem => item.PracticaID)
     </td>
     <td>
+        @Html.DisplayFor(modelItem => item.Subcategoria.Categoria.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Subcategoria.Nombre)
+    </td>
+    <td>
         @Html.DisplayFor(modelItem => item.CantidadConceptos)
     </td>
-    
+
     <td>
         @Html.DisplayFor(modelItem => item.Fecha)
     </td>

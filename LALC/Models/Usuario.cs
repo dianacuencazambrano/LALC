@@ -18,7 +18,8 @@ namespace LALC.Models
         [Required]
         public String nombre{ get; set; }
 
-        
+        public virtual ICollection<Categoria> Categorias { get; set; }
+
         public bool Autenticar()
         {
             LALCDb db = new LALCDb();

@@ -77,16 +77,6 @@ namespace LALC.Controllers
         
         public JsonResult  GetConceptoRandom()
         {
-            /*Random a = new Random();
-            var concepto = from s in db.Concepto select s;
-            concepto = concepto.Where(s => s.SubcategoriaID == specificID);
-            if (concepto == null)
-            {
-                return null;
-            }
-            List<Concepto> conceptos = concepto.ToList();
-            int v = a.Next(0, conceptos.Count);
-            Concepto c_random = conceptos[1];*/
             Concepto c_random = new Concepto();
             c_random.Titulo = "Prueba";
             var json = JsonConvert.SerializeObject(c_random);

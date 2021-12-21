@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using LALC.BDService;
 using LALC.Models;
 
 namespace LALC.Controllers
@@ -14,12 +15,17 @@ namespace LALC.Controllers
     public class PracticasController : Controller
     {
         public static int total = -1;
+        public static int subcategoriaId;
         private LALCDb db = new LALCDb();
+        private GetData data = new GetData();
 
         // GET: Practicas
         public ActionResult Index()
         {
-            return View(db.Practicas.ToList());
+            var practicas = from p in db.Practicas select p;
+            int userid = data.getUserID();
+            practicas = practicas.Where(p => p.Subcategoria.Categoria.UsuarioID == userid);
+            return View(practicas.ToList());
         }
 
         // GET: Practicas/Details/5
@@ -55,6 +61,7 @@ namespace LALC.Controllers
             Practica p = new Practica();
             p.CantidadConceptos = total;
             p.Fecha = DateTime.Now;
+            p.SubcategoriaID = LALC.Controllers.ConceptoesController.subcategoriaID;
             Create(p);
             total = -1;
             return RedirectToAction("Index","Practicas");
@@ -82,7 +89,7 @@ namespace LALC.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PracticaID,Correctos,Incorrectos,Fecha")] Practica practica)
+        public ActionResult Create([Bind(Include = "PracticaID,SubcategoriaID,Correctos,Incorrectos,Fecha")] Practica practica)
         {
             if (ModelState.IsValid)
             {

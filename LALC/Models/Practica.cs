@@ -9,12 +9,12 @@ namespace LALC.Models
     public class Practica
     {
         public int PracticaID { get; set; }
+        public int SubcategoriaID { get; set; }
         public int CantidadConceptos { get; set; }
 
         [Display(Name = "Fecha")]
         [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
+        public virtual Subcategoria Subcategoria { get; set; }
     }
 }
-
-//hola mundo :D

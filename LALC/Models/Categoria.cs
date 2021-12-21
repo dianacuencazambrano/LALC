@@ -11,6 +11,8 @@ namespace LALC.Models
     {
         [Required(ErrorMessage ="Este campo es obligatorio")]
         public int CategoriaID { get; set; }
+
+        public int UsuarioID { get; set; }
         [Required(ErrorMessage ="Este campo es obligatorio")]
         [MinLength(1)]
         public String Nombre { get; set; }
@@ -18,6 +20,7 @@ namespace LALC.Models
         public String Descripcion { get; set; }
         public Boolean esPrioritaria { get; set; }
 
-        public virtual ICollection<Categoria> Subcategoria { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public virtual ICollection<Subcategoria> Subcategoria { get; set; }
     }
 }
