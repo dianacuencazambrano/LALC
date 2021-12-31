@@ -43,6 +43,7 @@ namespace LALC.Controllers
             return View(categorias.ToPagedList(pagina ?? 1, 12));
         }
 
+        //Saave data
         public ActionResult SaveData()
         {
             LALCDb db = new LALCDb();
