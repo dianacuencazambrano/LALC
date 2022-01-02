@@ -20,6 +20,8 @@ namespace LALC.Models
 
         public virtual ICollection<Categoria> Categorias { get; set; }
 
+        //public virtual ICollection<Practica> Practicas { get; set; }
+
         public bool Autenticar()
         {
             LALCDb db = new LALCDb();

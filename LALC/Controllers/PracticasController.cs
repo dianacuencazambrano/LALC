@@ -62,6 +62,7 @@ namespace LALC.Controllers
             p.CantidadConceptos = total;
             p.Fecha = DateTime.Now;
             p.SubcategoriaID = LALC.Controllers.ConceptoesController.subcategoriaID;
+            //p.UsuarioID = data.getUserID();
             Create(p);
             total = -1;
             return RedirectToAction("Index","Practicas");

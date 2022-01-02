@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,7 @@ namespace LALC.Models
         public DbSet<Subcategoria> Subcategoria { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
-        public System.Data.Entity.DbSet<LALC.Models.Practica> Practicas { get; set; }
+        public DbSet<Practica> Practicas { get; set; }
+
     }
 }
